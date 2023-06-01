@@ -1,5 +1,6 @@
 ---
 - name: Packages | Backports
+  when: packages_backports_enabled
   block:
     - name: Repository
       ansible.builtin.apt_repository:
@@ -18,7 +19,6 @@
         owner: root
         group: root
         mode: "0644"
-  when: packages_backports_enabled
 
 - name: Packages | Install
   ansible.builtin.package:
