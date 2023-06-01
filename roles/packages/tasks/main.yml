@@ -1,0 +1,25 @@
+---
+- name: Packages | Backports
+  block:
+    - name: Repository
+      ansible.builtin.apt_repository:
+        repo: deb http://deb.debian.org/debian bullseye-backports main contrib non-free
+        state: present
+        filename: backports
+    - name: Source Repository
+      ansible.builtin.apt_repository:
+        repo: deb-src http://deb.debian.org/debian bullseye-backports main contrib non-free
+        state: present
+        filename: backports-src
+    - name: Pinning
+      ansible.builtin.copy:
+        src: files/backports.preferences
+        dest: /etc/apt/preferences.d/99debian-backports
+        owner: root
+        group: root
+        mode: "0644"
+
+- name: Packages | Install
+  ansible.builtin.package:
+    name: "{{ packages_list }}"
+    state: latest

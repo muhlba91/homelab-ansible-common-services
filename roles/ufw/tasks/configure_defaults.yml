@@ -1,0 +1,22 @@
+---
+- name: UFW | Configure Defaults | Deny Incoming
+  community.general.ufw:
+    policy: deny
+    direction: incoming
+  notify: UFW | Reload UFW
+
+- name: UFW | Configure Defaults | Allow Outgoing
+  community.general.ufw:
+    policy: allow
+    direction: outgoing
+  notify: UFW | Reload UFW
+
+- name: UFW | Configure Defaults | Add Rule
+  community.general.ufw: "{{ item }}"
+  loop: "{{ ufw_default_rules }}"
+  notify: UFW | Reload UFW
+
+- name: UFW | Configure Defaults | Enable
+  community.general.ufw:
+    state: enabled
+  notify: UFW | Reload UFW

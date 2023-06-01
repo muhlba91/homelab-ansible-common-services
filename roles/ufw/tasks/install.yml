@@ -1,0 +1,7 @@
+---
+- name: UFW | Install
+  ansible.builtin.package:
+    name:
+      - ufw
+    state: latest
+  notify: UFW | Restart UFW

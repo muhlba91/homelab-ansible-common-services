@@ -1,0 +1,56 @@
+---
+name: Run Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      s3_asset_bucket:
+        description: S3 Bucket and Path to the inventory to be downloaded and used
+        required: true
+        type: string
+
+env:
+  ANSIBLE_FORCE_COLOR: "true"
+  ANSIBLE_CONFIG: "${{ github.workspace }}/ansible.cfg"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # TODO: run on self-hosted
+    name: Deployment
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.9"]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt --no-cache
+          pip install -r requirements-test.txt --no-cache
+
+      - name: Install Ansible Galaxy dependencies
+        run: |
+          ansible-galaxy collection install -r requirements.yml
+          ansible-galaxy role install -p roles -r requirements.yml
+
+      - name: Install s3cmd
+        run: |
+          pip install s3cmd --no-cache
+
+      - name: Download Assets
+        run: |
+          ./scripts/download_assets.sh {{ inputs.s3_asset_bucket }} inventory
+          chmod 0600 inventory/ssh.key
+
+      - run: |
+          ansible-playbook -i inventory/inventory.yml --extra-vars ansible_ssh_private_key_file=inventory/ssh.key site.yml

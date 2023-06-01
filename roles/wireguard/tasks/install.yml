@@ -1,0 +1,8 @@
+---
+- name: Wireguard | Install
+  ansible.builtin.package:
+    name:
+      - wireguard
+      - iptables
+      - iproute2
+    state: latest

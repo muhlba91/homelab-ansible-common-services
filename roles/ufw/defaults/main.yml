@@ -1,0 +1,6 @@
+---
+ufw_enabled: false
+ufw_default_rules:
+  - name: SSH
+    rule: limit
+ufw_rules: []

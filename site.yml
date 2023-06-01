@@ -1,0 +1,60 @@
+---
+- name: Common Packages
+  hosts: all
+  gather_facts: true
+  any_errors_fatal: true
+  tags:
+    - always
+    - requirements
+  roles:
+    - packages
+
+- name: Ulimit
+  hosts: all
+  gather_facts: true
+  any_errors_fatal: true
+  tags:
+    - always
+    - ulimit
+  roles:
+    - ulimit
+
+- name: Loopback Interfaces
+  hosts: all
+  gather_facts: true
+  any_errors_fatal: true
+  tags:
+    - network
+    - loopback
+  roles:
+    - loopback
+
+- name: UFW
+  hosts: all
+  gather_facts: true
+  any_errors_fatal: true
+  tags:
+    - ufw
+    - firewall
+  roles:
+    - ufw
+
+- name: SSSD LDAP
+  hosts: all
+  gather_facts: true
+  any_errors_fatal: true
+  tags:
+    - sssd
+    - ldap
+  roles:
+    - sssd_ldap
+
+- name: Wireguard
+  hosts: all
+  gather_facts: true
+  any_errors_fatal: true
+  tags:
+    - wireguard
+    - vpn
+  roles:
+    - wireguard

@@ -1,0 +1,10 @@
+---
+- name: UFW | Restart UFW
+  ansible.builtin.systemd:
+    name: ufw
+    state: "{{ 'restarted' if ufw_enabled else 'stopped' }}"
+    enabled: "{{ ufw_enabled }}"
+
+- name: UFW | Reload UFW
+  community.general.ufw:
+    state: reloaded

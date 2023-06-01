@@ -1,0 +1,5 @@
+---
+- name: UFW | Configure Rules | Add Rule
+  community.general.ufw: "{{ item }}"
+  loop: "{{ ufw_rules }}"
+  notify: UFW | Reload UFW

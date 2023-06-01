@@ -1,0 +1,5 @@
+auto lo:{{ lo_idx + 1 }}
+iface lo:{{ lo_idx + 1 }} inet static
+  address {{ item.ipv4 }}
+iface lo:{{ lo_idx + 1 }} inet6 static
+  address {{ item.ipv6 }}

@@ -1,0 +1,26 @@
+---
+# Note: installation fails for some sssd versions.
+# Hence, we ignore errors, fix the installation with dpkg,
+# and finish the installation.
+- name: SSSD LDAP | Install | Packages
+  ansible.builtin.package:
+    name:
+      - sssd
+      - sssd-tools
+      - libpam-sss
+      - libnss-sss
+    state: latest
+  failed_when: false
+
+- name: SSSD LDAP | Install | Workaround | Repair with dpkg
+  ansible.builtin.command: dpkg --configure -a
+  changed_when: false
+
+- name: SSSD LDAP | Install | Workaround | Packages (Again)
+  ansible.builtin.package:
+    name:
+      - sssd
+      - sssd-tools
+      - libpam-sss
+      - libnss-sss
+    state: latest

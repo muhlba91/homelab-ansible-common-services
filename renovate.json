@@ -1,0 +1,38 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        ":dependencyDashboard"
+    ],
+    "prHourlyLimit": 0,
+    "prConcurrentLimit": 0,
+    "baseBranches": [
+        "main"
+    ],
+    "enabledManagers": [
+        "github-actions",
+        "ansible-galaxy",
+        "pip_requirements"
+    ],
+    "github-actions": {
+        "commitMessageTopic": "chore(deps): update github actions {{ depName }}",
+        "fileMatch": [
+            "^(workflow-templates|\\.github/workflows)/[^/]+\\.ya?ml$",
+            "(^|/)action\\.ya?ml$"
+        ]
+    },
+    "ansible-galaxy": {
+        "commitMessageTopic": "chore(deps): update ansible galaxy {{ depName }}",
+        "fileMatch": [
+            "(^|/)requirements\\.ya?ml$",
+            "(^|/)galaxy\\.ya?ml$"
+        ]
+    },
+    "pip_requirements": {
+        "commitMessageTopic": "chore(deps): update python requirements {{ depName }}",
+        "fileMatch": [
+            "(^|/)([\\w-]*)requirements\\.(txt|pip)$",
+            "(^|/)([\\w-]*)requirements-test\\.(txt|pip)$"
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+---
+- name: Loopback | Configure Interfaces | Add Interface
+  ansible.builtin.template:
+    src: templates/interface.j2
+    dest: "/etc/network/interfaces.d/99-lo{{ lo_idx + 1 }}"
+    mode: "0600"
+  loop: "{{ loopback_interfaces }}"
+  loop_control:
+    index_var: lo_idx
+
+- name: Loopback | Configure Interfaces | Ifup Interface
+  ansible.builtin.command: "ifup lo:{{ lo_idx + 1 }}"
+  changed_when: false
+  loop: "{{ loopback_interfaces }}"
+  loop_control:
+    index_var: lo_idx

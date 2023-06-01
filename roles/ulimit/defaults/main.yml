@@ -1,0 +1,2 @@
+---
+ulimit_open_files: 1048576

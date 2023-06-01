@@ -1,0 +1,4 @@
+---
+- name: Wireguard | Install
+  ansible.builtin.include_tasks: install.yml
+  when: wireguard_enabled

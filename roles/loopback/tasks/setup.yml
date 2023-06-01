@@ -1,0 +1,7 @@
+---
+- name: Loopback | Setup | Make Sure to Read interfaces.d Directory
+  ansible.builtin.lineinfile:
+    path: /etc/network/interfaces
+    regexp: "^source-directory /etc/network/interfaces.d"
+    line: source-directory /etc/network/interfaces.d
+    state: present

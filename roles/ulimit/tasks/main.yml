@@ -1,0 +1,28 @@
+---
+- name: Ulimit | Set Open Files | Soft
+  ansible.builtin.lineinfile:
+    path: /etc/security/limits.conf
+    regexp: "^\\*.*soft.*nofile.*{{ ulimit_open_files }}"
+    line: "*    soft    nofile  {{ ulimit_open_files }}"
+    state: present
+
+- name: Ulimit | Set Open Files | Soft | root
+  ansible.builtin.lineinfile:
+    path: /etc/security/limits.conf
+    regexp: "^root.*soft.*nofile.*{{ ulimit_open_files }}"
+    line: "root    soft    nofile  {{ ulimit_open_files }}"
+    state: present
+
+- name: Ulimit | Set Open Files | Hard
+  ansible.builtin.lineinfile:
+    path: /etc/security/limits.conf
+    regexp: "^\\*.*hard.*nofile.*{{ ulimit_open_files }}"
+    line: "*    hard    nofile  {{ ulimit_open_files }}"
+    state: present
+
+- name: Ulimit | Set Open Files | Hard | root
+  ansible.builtin.lineinfile:
+    path: /etc/security/limits.conf
+    regexp: "^root.*hard.*nofile.*{{ ulimit_open_files }}"
+    line: "root    hard    nofile  {{ ulimit_open_files }}"
+    state: present

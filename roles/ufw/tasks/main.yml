@@ -1,0 +1,10 @@
+---
+- name: UFW | Install
+  ansible.builtin.include_tasks: install.yml
+  when: ufw_enabled
+- name: UFW | Configure Defaults
+  ansible.builtin.include_tasks: configure_defaults.yml
+  when: ufw_enabled
+- name: UFW | Configure Rules
+  ansible.builtin.include_tasks: configure_rules.yml
+  when: ufw_enabled

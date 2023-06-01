@@ -1,0 +1,23 @@
+[sssd]
+config_file_version = 2
+domains = {{ sssd_ldap_name }}
+
+[nss]
+
+[pam]
+
+[domain/{{ sssd_ldap_name }}]
+debug_level = 2
+id_provider = ldap
+enumerate = true
+auth_provider = ldap
+ldap_uri = {{ sssd_ldap_uri }}
+ldap_search_base = {{ sssd_ldap_search_base }}
+ldap_default_bind_dn = {{ sssd_ldap_bind_dn }}
+ldap_default_authtok = {{ sssd_ldap_auth_token }}
+
+ldap_user_ssh_public_key = {{ sssd_ldap_ssh_public_key }}
+ldap_use_tokengroups = False
+ldap_tls_cacert = /etc/ssl/certs/ca-certificates.crt
+ldap_access_filter = {{ sssd_ldap_access_filter }}
+sudo_provider = none

@@ -1,0 +1,7 @@
+---
+- name: SSSD LDAP | Configure SSH
+  ansible.builtin.include_tasks: configure_ssh.yml
+- name: SSSD LDAP | Configure sudoers
+  ansible.builtin.include_tasks: configure_sudoers.yml
+- name: SSSD LDAP | Configure SSSD
+  ansible.builtin.include_tasks: configure_sssd.yml

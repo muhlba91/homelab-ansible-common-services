@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  namespace: muhlba91
+  role_name: wireguard
+  description: Role to install Wireguard
+  author: Daniel Muehlbachler-Pietrzykowski <daniel.muehlbachler@niftyside.io>
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: 7.0.0
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - wireguard
+
+dependencies: []
