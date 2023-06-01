@@ -109,7 +109,7 @@ A deploy ca be triggered by dispatching the [`deploy.yml`](.github/workflows/dep
   with:
     workflow: deploy.yml
     repo: muhlba91/homelab-ansible-common-services
-    inputs: '{ "s3_asset_bucket": "s3://bucket/path" }'
+    inputs: '{ "s3_asset_bucket": "bucket/path" }'
     token: ${{ secrets.GITHUB_PAT_TOKEN }}
 ```
 

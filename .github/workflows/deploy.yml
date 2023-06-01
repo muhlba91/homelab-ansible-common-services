@@ -15,7 +15,9 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest # TODO: run on self-hosted
+    runs-on:
+      - tuxnet
+      - vpn
     name: Deployment
     strategy:
       max-parallel: 4
@@ -49,7 +51,7 @@ jobs:
 
       - name: Download Assets
         run: |
-          ./scripts/download_assets.sh {{ inputs.s3_asset_bucket }} inventory
+          ./.ci/download_assets.sh {{ inputs.s3_asset_bucket }} inventory
           chmod 0600 inventory/ssh.key
 
       - run: |
