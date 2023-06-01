@@ -57,7 +57,7 @@ jobs:
 
       - name: Download Assets
         run: |
-          ./.ci/download_assets.sh {{ inputs.s3_asset_bucket }} inventory
+          ./.ci/download_assets.sh "${{ inputs.s3_asset_bucket }}" inventory
           chmod 0600 inventory/ssh.key
 
       - run: |
