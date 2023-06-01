@@ -5,7 +5,7 @@ sssd_ldap_search_base: o=MY-ORG,dc=MY-DC,dc=MY-DC
 sssd_ldap_access_filter: memberOf=cn=MY-CN,ou=MY-OU,o=MY-ORG,dc=MY-DC,dc=MY-DC
 sssd_ldap_bind_dn: uid=MY-USER-ID,ou=MY-OU,o=MY-ORG,dc=MY-DC,dc=MY-DC
 sssd_ldap_auth_token: bind-dn-password
-sssd_ldap_ssh_public_key: sshKey
+sssd_ldap_ssh_public_key: sshPublicKey
 sssd_ldap_sudo_groups:
   - name: MY-GROUP
     spec: ALL=(ALL:ALL) NOPASSWD:ALL
