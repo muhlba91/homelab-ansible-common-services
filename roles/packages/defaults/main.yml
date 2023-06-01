@@ -1,4 +1,5 @@
 ---
+packages_backports_enabled: true
 packages_list:
   - wget
   - curl

@@ -1,6 +1,7 @@
 [sssd]
 config_file_version = 2
 domains = {{ sssd_ldap_name }}
+services = nss, pam, ssh
 
 [nss]
 
@@ -8,16 +9,30 @@ domains = {{ sssd_ldap_name }}
 
 [domain/{{ sssd_ldap_name }}]
 debug_level = 2
-id_provider = ldap
 enumerate = true
+
+id_provider = ldap
 auth_provider = ldap
+chpass_provider = ldap
+sudo_provider = none
+
+default_shell = /bin/bash
+
+ldap_use_tokengroups = False
+ldap_tls_cacert = /etc/ssl/certs/ca-certificates.crt
+ldap_schema = rfc2307bis
+
 ldap_uri = {{ sssd_ldap_uri }}
 ldap_search_base = {{ sssd_ldap_search_base }}
+ldap_user_search_base = {{ sssd_ldap_user_search_base }}
+ldap_group_search_base= {{ ldap_group_search_base }}
+ldap_access_filter = {{ sssd_ldap_access_filter }}
+ldap_user_ssh_public_key = {{ sssd_ldap_ssh_public_key }}
+
 ldap_default_bind_dn = {{ sssd_ldap_bind_dn }}
 ldap_default_authtok = {{ sssd_ldap_auth_token }}
 
-ldap_user_ssh_public_key = {{ sssd_ldap_ssh_public_key }}
-ldap_use_tokengroups = False
-ldap_tls_cacert = /etc/ssl/certs/ca-certificates.crt
-ldap_access_filter = {{ sssd_ldap_access_filter }}
-sudo_provider = none
+ldap_user_object_class = user
+ldap_user_name = cn
+ldap_group_object_class = group
+ldap_group_name = cn
