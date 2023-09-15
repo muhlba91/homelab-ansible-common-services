@@ -1,6 +1,7 @@
 ---
 - name: Loopback | Setup
   ansible.builtin.include_tasks: setup.yml
+  when: loopback_interfaces | length > 0
 - name: Loopback | Configure Interfaces
   ansible.builtin.include_tasks: configure_interfaces.yml
   when: loopback_interfaces | length > 0
