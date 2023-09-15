@@ -1,2 +1,4 @@
 ---
 ulimit_open_files: 1048576
+ulimit_sysctl_max_user_instances: 8192
+ulimit_sysctl_max_user_watches: 524288

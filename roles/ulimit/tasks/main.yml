@@ -26,3 +26,19 @@
     regexp: "^root.*hard.*nofile.*{{ ulimit_open_files }}"
     line: "root    hard    nofile  {{ ulimit_open_files }}"
     state: present
+
+- name: Ulimit | Sysctls | max_user_instances
+  ansible.posix.sysctl:
+    name: fs.inotify.max_user_instances
+    value: "{{ ulimit_sysctl_max_user_instances }}"
+    sysctl_set: true
+    state: present
+    reload: true
+
+- name: Ulimit | Sysctls | max_user_watches
+  ansible.posix.sysctl:
+    name: fs.inotify.max_user_watches
+    value: "{{ ulimit_sysctl_max_user_watches }}"
+    sysctl_set: true
+    state: present
+    reload: true
