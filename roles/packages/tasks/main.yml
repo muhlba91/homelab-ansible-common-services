@@ -4,12 +4,12 @@
   block:
     - name: Repository
       ansible.builtin.apt_repository:
-        repo: deb http://deb.debian.org/debian bullseye-backports main contrib non-free
+        repo: deb http://deb.debian.org/debian bookworm-backports main contrib non-free
         state: present
         filename: backports
     - name: Source Repository
       ansible.builtin.apt_repository:
-        repo: deb-src http://deb.debian.org/debian bullseye-backports main contrib non-free
+        repo: deb-src http://deb.debian.org/debian bookworm-backports main contrib non-free
         state: present
         filename: backports-src
     - name: Pinning
