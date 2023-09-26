@@ -2,3 +2,4 @@
 skip_list:
   - package-latest
   - no-tabs
+  - var-naming[no-role-prefix]
