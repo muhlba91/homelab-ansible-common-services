@@ -21,9 +21,7 @@ env:
 
 jobs:
   deploy:
-    runs-on:
-      - tuxnet
-      - vpn
+    runs-on: ubuntu-latest
     name: Deployment
     strategy:
       max-parallel: 4
