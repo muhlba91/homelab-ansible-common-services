@@ -14,10 +14,6 @@ env:
   ANSIBLE_CONFIG: "${{ github.workspace }}/ansible.cfg"
   GCS_ACCESS_KEY_ID: "${{ secrets.GCS_ACCESS_KEY_ID }}"
   GCS_SECRET_ACCESS_KEY: "${{ secrets.GCS_SECRET_ACCESS_KEY }}"
-  LDAP_BIND_AUTH_TOKEN: "${{ secrets.LDAP_BIND_AUTH_TOKEN }}"
-  LDAP_BIND_DN: "${{ secrets.LDAP_BIND_DN }}"
-  LDAP_SEARCH_BASE: "${{ secrets.LDAP_SEARCH_BASE }}"
-  LDAP_URI: "${{ secrets.LDAP_URI }}"
 
 jobs:
   deploy:

@@ -1,8 +1,0 @@
----
-- name: SSSD LDAP | Configure | sudoers | Add sudo Group
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers
-    regexp: "^%{{ item.name }} {{ item.spec }}$"
-    line: "%{{ item.name }} {{ item.spec }}"
-    state: present
-  loop: "{{ sssd_ldap_sudo_groups }}"

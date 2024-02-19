@@ -39,27 +39,6 @@ Install common packages. Please refer to `packages_list` in the [`defaults/main.
 
 You can disable setting up the ***Debian*** (!!!) backports repository by setting `packages_backports_enabled`.
 
-### SSSD LDAP
-
-Installs and configures SSSD using LDAP.
-
-Example configuration:
-
-```yaml
-sssd_ldap_name: ldap
-sssd_ldap_uri: https://my.ldap.uri:636
-sssd_ldap_search_base: o=MY-ORG,dc=MY-DC,dc=MY-DC
-sssd_ldap_user_search_base: cn=MY-CN,o=MY-ORG,dc=MY-DC,dc=MY-DC
-ldap_group_search_base: cn=MY-CN,o=MY-ORG,dc=MY-DC,dc=MY-DC
-sssd_ldap_access_filter: memberOf=cn=MY-CN,ou=MY-OU,o=MY-ORG,dc=MY-DC,dc=MY-DC
-sssd_ldap_bind_dn: uid=MY-USER-ID,ou=MY-OU,o=MY-ORG,dc=MY-DC,dc=MY-DC
-sssd_ldap_auth_token: bind-dn-password
-sssd_ldap_ssh_public_key: sshPublicKey
-sssd_ldap_sudo_groups:
-  - name: MY-GROUP
-    spec: ALL=(ALL:ALL) NOPASSWD:ALL
-```
-
 ### UFW
 
 Installs and configures UFW and provided rules.

@@ -39,16 +39,6 @@
   roles:
     - ufw
 
-- name: SSSD LDAP
-  hosts: all
-  gather_facts: true
-  any_errors_fatal: true
-  tags:
-    - sssd
-    - ldap
-  roles:
-    - sssd_ldap
-
 - name: Wireguard
   hosts: all
   gather_facts: true

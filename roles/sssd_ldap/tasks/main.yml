@@ -1,5 +1,0 @@
----
-- name: SSSD LDAP | Install
-  ansible.builtin.include_tasks: install.yml
-- name: SSSD LDAP | Configure
-  ansible.builtin.include_tasks: configure.yml
