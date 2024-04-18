@@ -17,6 +17,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deployment
+    permissions:
+      contents: read
+      id-token: write
     strategy:
       max-parallel: 4
       matrix:
