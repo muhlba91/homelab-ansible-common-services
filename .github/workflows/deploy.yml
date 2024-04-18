@@ -12,8 +12,6 @@ on:
 env:
   ANSIBLE_FORCE_COLOR: "true"
   ANSIBLE_CONFIG: "${{ github.workspace }}/ansible.cfg"
-  GCS_ACCESS_KEY_ID: "${{ secrets.GCS_ACCESS_KEY_ID }}"
-  GCS_SECRET_ACCESS_KEY: "${{ secrets.GCS_SECRET_ACCESS_KEY }}"
 
 jobs:
   deploy:
@@ -33,6 +31,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+
+      - uses: hashicorp/vault-action@v3
+        id: import-secrets
+        with:
+          method: jwt
+          url: ${{ secrets.VAULT_ADDR }}
+          path: ${{ secrets.VAULT_PATH }}
+          role: ${{ secrets.VAULT_ROLE }}
+          secrets: |
+            github-homelab-ansible-common-services/data/google-cloud-storage access_key_id | GCS_ACCESS_KEY_ID ;
+            github-homelab-ansible-common-services/data/google-cloud-storage secret_access_key | GCS_SECRET_ACCESS_KEY ;
+            github-homelab-ansible-common-services/data/tailscale oauth_client_id | TS_OAUTH_CLIENT_ID ;
+            github-homelab-ansible-common-services/data/tailscale oauth_secret | TS_OAUTH_SECRET
 
       - name: Install Python dependencies
         run: |
@@ -56,8 +67,8 @@ jobs:
 
       - uses: tailscale/github-action@v2
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          oauth-client-id: ${{ env.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ env.TS_OAUTH_SECRET }}
           tags: tag:github-actions
 
       - run: |
